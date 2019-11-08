@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>Back Office</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,8 +26,8 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Back Office</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Role Management</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">User Management</a>
+        <a href="{{ route('role.index')}}" class="list-group-item list-group-item-action bg-light">Role Management</a>
+        <a href="{{ route('user.list') }}" class="list-group-item list-group-item-action bg-light">User Role</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
