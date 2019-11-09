@@ -26,7 +26,9 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Back Office</div>
       <div class="list-group list-group-flush">
-        <a href="{{ route('role.index')}}" class="list-group-item list-group-item-action bg-light">Role Management</a>
+        @role('Administrative')
+          <a href="{{ route('role.index')}}" class="list-group-item list-group-item-action bg-light">Role Management</a>
+        @endrole
         <a href="{{ route('user.list') }}" class="list-group-item list-group-item-action bg-light">User Role</a>
       </div>
     </div>
@@ -60,7 +62,9 @@
           </ul>
         </div>
       </nav>
-    
+
+      @include('flashMsg.msg_list')
+      
       @yield('content')
     
     </div>

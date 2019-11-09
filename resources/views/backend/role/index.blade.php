@@ -13,16 +13,7 @@
             <a href="{{ route('role.create') }}" class="btn btn-primary">Create Role</a>
         </div>
     </div>
-    
     <hr>
-
-    @if (Session::has('successMsg'))
-    <div class="alert alert-success">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <p>{{ Session::get('successMsg') }}</p>
-    </div>
-    @endif
-
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -39,7 +30,14 @@
                     <th scope="row">{{ ++$key }}</th>
                     <td>{{ $role->name }}</td>
                     <td>None</td>
-                    <td><a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary">Edit</a></td>
+                    <td>
+                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('role.destroy', $role->id) }}" method="post">
+                            {{ method_field('delete') }}
+                            @csrf
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             @else

@@ -19,7 +19,9 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
-            <th scope="col">Action</th>
+            @role('Administrative')
+                <th scope="col">Action</th>
+            @endrole
             </tr>
         </thead>
         <tbody>
@@ -30,7 +32,9 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->getRoleNames() }}</td>
-                    <td><a href="{{ route('user.role_form', $user->id) }}" class="btn btn-primary">Set Role</a></td>
+                    @role('Administrative')
+                        <td><a href="{{ route('user.role_form', $user->id) }}" class="btn btn-primary">Set Role</a></td>
+                    @endrole
                 </tr>
                 @endforeach
             @else

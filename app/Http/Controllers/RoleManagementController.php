@@ -52,15 +52,12 @@ class RoleManagementController extends Controller
         ]);
 
         if(empty($validatedData))
-        {
             return Redirect::back()->withErrors($validatedData);
-        }
         else 
         {
             $role = new Role;
             $role->name = $request->name;
             $role->save();
-
             return Redirect::to('role/create')->with('successMsg', 'Role Created Successfuly');
         }
     }
@@ -102,15 +99,12 @@ class RoleManagementController extends Controller
         ]);
 
         if(empty($validatedData))
-        {
             return Redirect::back()->withErrors($validatedData);
-        }
         else 
         {
             $role = Role::find($id);
             $role->name = $request->name;
             $role->update();
-
             return Redirect::to('role/'.$id.'/edit')->with('successMsg', 'Role Updated Successfuly');
         }
     }
@@ -122,10 +116,9 @@ class RoleManagementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         $role = Role::find($id);
         $role->delete();
-
         return Redirect::to('role/')->with('successMsg', 'Role Deleted Successfuly');
     }
 }

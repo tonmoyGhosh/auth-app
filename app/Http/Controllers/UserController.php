@@ -19,7 +19,6 @@ class UserController extends Controller
     {   
         $user = User::find($userId);
         $roles = Role::all();
-        
         return view('backend.user.role_form', compact('user','roles'));
     }   
 
@@ -30,15 +29,20 @@ class UserController extends Controller
         ]);
 
         if(empty($validatedData))
-        {
             return Redirect::back()->withErrors($validatedData);
-        }
         else 
         {   
             $user = User::find($request->user_id);
-            $user->assignRole($request->role);
+            if($user->hasAllRoles(Role::all())) 
+                $user->syncRoles($request->role);
+            else $user->assignRole($request->role);
             
             return Redirect::to('user-role-setting/'.$request->user_id)->with('successMsg', 'User Role Set Successfuly');
         }
+    }
+
+    public function userdashboard()
+    {
+        return view('frontend.dashboard');
     }
 }

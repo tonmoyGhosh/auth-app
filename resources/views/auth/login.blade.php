@@ -5,8 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                
+                @if(Auth::check())
+                    <div class="card-body">
+                        <h1>Welcome This Project</h1>
+                    </div>
+                    @role('Administrative|Operator')
+                        <a href="{{ route('dashboard') }}" class="btn btn-primary">Dashboard</a>
+                    @endrole
+                    @role('User')
+                        <a href="{{ route('user.dashboard') }}" class="btn btn-primary">Dashboard</a>
+                    @endrole
+                @else
                 <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -66,6 +77,7 @@
                         </div>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
     </div>
